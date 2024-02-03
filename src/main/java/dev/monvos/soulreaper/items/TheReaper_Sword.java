@@ -40,7 +40,7 @@ public class TheReaper_Sword extends SwordItem {
   public void onMobKill(ItemStack stack) {
     CompoundTag tag = stack.getOrCreateTag();
     int killCount = tag.getInt(KILL_COUNT_TAG);
-    killCount = killCount + 10;
+    killCount = killCount + 1;
     tag.putInt(KILL_COUNT_TAG, killCount);
     stack.setTag(tag);
     LOGGER.info(String.valueOf(tag.getInt(KILL_COUNT_TAG)));
@@ -52,7 +52,7 @@ public class TheReaper_Sword extends SwordItem {
     int killCount = tag.getInt(KILL_COUNT_TAG);
     float newDamage = getDamage() + killCount;
     entity.hurt(player.damageSources().generic(), newDamage);
-    player.addEffect(new MobEffectInstance(MobEffects.HEAL, 10));
+    // player.addEffect(new MobEffectInstance(MobEffects.HEAL, 10));
     return true;
   }
 

@@ -22,5 +22,7 @@ public class DataGenerators {
     ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
     generator.addProvider(event.includeClient(), new SRItemModelProvider(packOutput, fileHelper));
+    generator.addProvider(event.includeClient(), new SRBlockStateProvider(packOutput, fileHelper));
+    generator.addProvider(event.includeServer(), new SRModRecipeProvider(packOutput));
   }
 }

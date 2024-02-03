@@ -1,5 +1,7 @@
 {
   "item.soulreaper.thereaper_sword": "The Reaper",
   "item.soulreaper.empty_soul_jar": "Empty Soul Jar",
-  "item.soulreaper.filled_soul_jar": "Filled Soul Jar"
+  "item.soulreaper.filled_soul_jar": "Filled Soul Jar",
+  "block.soulreaper.soul_glass": "Soul Glass",
+  "creativetab.soulreaper_tab": "Soul Reaper Tab"
 }

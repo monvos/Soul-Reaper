@@ -2,11 +2,15 @@ package dev.monvos.soulreaper;
 
 import com.mojang.logging.LogUtils;
 
+import dev.monvos.soulreaper.items.Empty_Soul_Jar;
 import dev.monvos.soulreaper.items.TheReaper_Sword;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 // import net.minecraft.world.food.FoodProperties;
-// import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -14,6 +18,8 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GlassBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 // import net.minecraft.world.level.block.state.BlockBehaviour;
 // import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
@@ -70,25 +76,32 @@ public class SoulReaper {
   // ITEMS.register("example_item",
   // () -> new Item(new Item.Properties().food(new FoodProperties.Builder()
   // .alwaysEat().nutrition(1).saturationMod(2f).build())));
+  public static final RegistryObject<GlassBlock> SOUL_GLASS = BLOCKS.register("soul_glass",
+      () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)));
+
+  public static final RegistryObject<Item> SOUL_GLASS_ITEM = ITEMS.register("soul_glass",
+      () -> new BlockItem(SOUL_GLASS.get(), new Item.Properties()));
 
   public static final RegistryObject<SwordItem> THEREAPER_SWORD = ITEMS.register("thereaper_sword",
       () -> new TheReaper_Sword(Tiers.NETHERITE, 3, -2.4F, (new Item.Properties()).fireResistant()));
 
   public static final RegistryObject<Item> EMPTY_SOUL_JAR = ITEMS.register("empty_soul_jar",
-      () -> new Item(new Item.Properties()));
+      () -> new Empty_Soul_Jar(new Item.Properties().stacksTo(1)));
 
   public static final RegistryObject<Item> FILLED_SOUL_JAR = ITEMS.register("filled_soul_jar",
-      () -> new Item(new Item.Properties()));
+      () -> new Item(new Item.Properties().stacksTo(1)));
   // Creates a creative tab with the id "examplemod:example_tab" for the example
   // item, that is placed after the combat tab
-  public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab",
+  public static final RegistryObject<CreativeModeTab> SOULREAPER_TAB = CREATIVE_MODE_TABS.register("soulreaper_tab",
       () -> CreativeModeTab.builder()
           .withTabsBefore(CreativeModeTabs.COMBAT)
           .icon(() -> THEREAPER_SWORD.get().getDefaultInstance())
+          .title(Component.translatable("creativetab.soulreaper_tab"))
           .displayItems((parameters, output) -> {
             output.accept(THEREAPER_SWORD.get());
             output.accept(EMPTY_SOUL_JAR.get());
             output.accept(FILLED_SOUL_JAR.get());
+            output.accept(SOUL_GLASS.get());
             // output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For
             // your own tabs, this method is
             // preferred over the event
@@ -149,6 +162,7 @@ public class SoulReaper {
   public static class ClientModEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
+      ItemBlockRenderTypes.setRenderLayer(SoulReaper.SOUL_GLASS.get(), RenderType.cutout());
       // Some client setup code
       LOGGER.info("HELLO FROM CLIENT SETUP");
       LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());

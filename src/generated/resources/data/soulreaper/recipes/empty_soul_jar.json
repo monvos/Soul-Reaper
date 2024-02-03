@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "X": {
+      "item": "soulreaper:soul_glass"
+    }
+  },
+  "pattern": [
+    " # ",
+    "X X",
+    " X "
+  ],
+  "result": {
+    "item": "soulreaper:empty_soul_jar"
+  },
+  "show_notification": true
+}
