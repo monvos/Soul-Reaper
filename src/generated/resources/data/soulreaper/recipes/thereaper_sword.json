@@ -5,14 +5,17 @@
     "#": {
       "item": "minecraft:stick"
     },
+    "S": {
+      "item": "minecraft:diamond_sword"
+    },
     "X": {
-      "item": "minecraft:soul_sand"
+      "item": "soulreaper:filled_soul_jar"
     }
   },
   "pattern": [
-    "X",
-    "X",
-    "#"
+    " S ",
+    "XSX",
+    " # "
   ],
   "result": {
     "item": "soulreaper:thereaper_sword"

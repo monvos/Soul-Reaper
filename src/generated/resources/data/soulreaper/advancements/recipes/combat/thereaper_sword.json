@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_soul_sand": {
+    "has_filled_soul_jar": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:soul_sand"
+              "soulreaper:filled_soul_jar"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_soul_sand",
+      "has_filled_soul_jar",
       "has_the_recipe"
     ]
   ],

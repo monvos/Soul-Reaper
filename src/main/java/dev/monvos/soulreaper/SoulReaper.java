@@ -5,8 +5,6 @@ import com.mojang.logging.LogUtils;
 import dev.monvos.soulreaper.items.Empty_Soul_Jar;
 import dev.monvos.soulreaper.items.TheReaper_Sword;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 // import net.minecraft.world.food.FoodProperties;
@@ -162,7 +160,6 @@ public class SoulReaper {
   public static class ClientModEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-      ItemBlockRenderTypes.setRenderLayer(SoulReaper.SOUL_GLASS.get(), RenderType.cutout());
       // Some client setup code
       LOGGER.info("HELLO FROM CLIENT SETUP");
       LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());

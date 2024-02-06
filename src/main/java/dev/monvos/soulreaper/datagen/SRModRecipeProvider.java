@@ -23,11 +23,12 @@ public class SRModRecipeProvider extends RecipeProvider {
   protected void buildRecipes(Consumer<FinishedRecipe> p_251297_) {
     ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, SoulReaper.THEREAPER_SWORD.get())
         .define('#', Items.STICK)
-        .define('X', Items.SOUL_SAND)
-        .pattern("X")
-        .pattern("X")
-        .pattern("#")
-        .unlockedBy("has_soul_sand", has(Items.SOUL_SAND))
+        .define('X', SoulReaper.FILLED_SOUL_JAR.get())
+        .define('S', Items.DIAMOND_SWORD)
+        .pattern(" S ")
+        .pattern("XSX")
+        .pattern(" # ")
+        .unlockedBy("has_filled_soul_jar", has(SoulReaper.FILLED_SOUL_JAR.get()))
         .save(p_251297_);
 
     ShapedRecipeBuilder.shaped(RecipeCategory.MISC, SoulReaper.EMPTY_SOUL_JAR.get())
@@ -39,8 +40,8 @@ public class SRModRecipeProvider extends RecipeProvider {
         .unlockedBy("has_soul_glass", has(SoulReaper.SOUL_GLASS.get()))
         .save(p_251297_);
 
-    SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.SOUL_SAND), RecipeCategory.BUILDING_BLOCKS,
-        SoulReaper.SOUL_GLASS.get(), 0.1F, 200)
+    SimpleCookingRecipeBuilder.smelting(Ingredient.of(Items.SOUL_SAND), RecipeCategory.MISC,
+        SoulReaper.SOUL_GLASS.get(), 0.2F, 400)
         .unlockedBy("has_soul_sand", has(Items.SOUL_SAND))
         .save(p_251297_);
 
